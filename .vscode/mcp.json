@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "testrail": {
+      "command": "node",
+      "args": [
+        "c:\\Users\\Marc.Reynolds\\testrail-mcp-server\\build\\index.js"
+      ]
+    }
+  }
+}
