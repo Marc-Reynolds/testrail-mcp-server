@@ -11,6 +11,7 @@ This server provides the following tools to interact with TestRail:
 - **get_test_case** - Get details about a specific test case
 - **list_projects** - List all available TestRail projects
 - **get_users** - Get list of TestRail users
+- **get_tests_for_run** - Get all tests in a specific test run
 
 ## Installation
 
@@ -38,6 +39,37 @@ npm run build
 
 ## Usage
 
+### Command Line Interface (Recommended)
+
+The easiest way to use the TestRail MCP server is via the CLI wrapper:
+
+```bash
+# Get tests for a run
+node cli.js get-tests <run_id>
+
+# Get test run details
+node cli.js get-run <run_id>
+
+# Get test results for a run
+node cli.js get-results <run_id>
+
+# Get a specific test case
+node cli.js get-case <case_id>
+
+# List all projects
+node cli.js list-projects
+
+# Get all users
+node cli.js get-users
+```
+
+**Examples:**
+```bash
+node cli.js get-tests 20560
+node cli.js get-run 18889
+node cli.js list-projects
+```
+
 ### With Claude Desktop
 
 Add to your Claude Desktop configuration (`claude_desktop_config.json`):
@@ -57,15 +89,20 @@ Add to your Claude Desktop configuration (`claude_desktop_config.json`):
 
 ### With VS Code
 
-Add to your VS Code MCP configuration (`mcp.json` in `.vscode` folder):
+Add to your VS Code workspace settings (`.vscode/settings.json`):
 
 ```json
 {
-  "testrail": {
-    "command": "node",
-    "args": [
-      "C:\\Users\\Marc.Reynolds\\testrail-mcp-server\\build\\index.js"
-    ]
+  "github.copilot.chat.codeGeneration.mcp": {
+    "enabled": true,
+    "servers": {
+      "testrail": {
+        "command": "node",
+        "args": [
+          "c:\\Users\\Marc.Reynolds\\testrail-mcp-server\\build\\index.js"
+        ]
+      }
+    }
   }
 }
 ```

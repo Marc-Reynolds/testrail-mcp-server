@@ -1,18 +1,59 @@
-<!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
-- [x] Verify that the copilot-instructions.md file in the .github directory is created.
+# TestRail MCP Server - Copilot Instructions
 
-- [ ] Clarify Project Requirements
+## Project Overview
 
-- [ ] Scaffold the Project
+This is a Model Context Protocol (MCP) server that provides access to TestRail API for test management operations. It can be used via CLI or integrated with AI assistants like Claude Desktop or GitHub Copilot.
 
-- [ ] Customize the Project
+## Using the TestRail MCP Server
 
-- [ ] Install Required Extensions
+### Command Line Interface (Primary Method)
 
-- [ ] Compile the Project
+Use the CLI wrapper to interact with TestRail:
 
-- [ ] Create and Run Task
+```bash
+# Get tests for a run
+node cli.js get-tests <run_id>
 
-- [ ] Launch the Project
+# Get test run details
+node cli.js get-run <run_id>
 
-- [ ] Ensure Documentation is Complete
+# Get test results for a run
+node cli.js get-results <run_id>
+
+# Get a specific test case
+node cli.js get-case <case_id>
+
+# List all projects
+node cli.js list-projects
+
+# Get all users
+node cli.js get-users
+```
+
+### When Helping Users
+
+1. **For TestRail data requests**: Use the CLI commands to fetch data
+2. **For analysis**: Parse the JSON output and provide insights
+3. **For integration**: Help connect this server with other tools (like TSE-Report-Tool)
+
+### Available Tools
+
+- `get_test_run` - Get information about a specific test run
+- `get_test_results` - Fetch test results for a test run
+- `get_test_case` - Get details about a specific test case
+- `list_projects` - List all available TestRail projects
+- `get_users` - Get list of TestRail users
+- `get_tests_for_run` - Get all tests in a specific test run
+
+### Development
+
+- Source files are in `src/` (TypeScript)
+- Build output is in `build/` (JavaScript)
+- Run `npm run build` to compile
+- Run `npm run watch` for development mode
+
+### Configuration
+
+- Credentials are stored in `.env` file
+- TestRail URL, username, and API key are required
+- Never expose credentials in code or logs
